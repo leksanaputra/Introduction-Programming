@@ -1,0 +1,123 @@
+package com.tugaskelompok;
+/*
+*1. 2201847662 - Fahmy Perdana Leksana Putra
+* */
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	    int noPilihan;
+        int bil1=0, bil2=0;
+
+        while (true) {
+            System.out.println("");
+            System.out.println("Menu hari ini");
+            System.out.println("1. Penjumlahan Bilangan Prima"+
+                    "\n2. Jumlah Bilangan Prima" +
+                    "\n3. Exit");
+            noPilihan = inputInteger("Masukan Pilihan Anda  :  ");
+
+
+            switch (noPilihan) {
+                case 1:
+                    System.out.println("");
+                    bil1 = inputInteger("Masukkan Bilangan 1");
+                    bil2 = inputInteger("Masukkan Bilangan 2");
+                    hitungBilPrima(bil1, bil2);
+                    break;
+                case 2:
+                    System.out.println("");
+                    jmlBilPrima(bil1, bil2);
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Pilihan tidak tersedia");
+                    break;
+
+            }
+        }
+    }
+
+    private static Integer inputInteger(String strNo) {
+        Scanner inputNo = new Scanner(System.in);
+        int value = 0;
+
+        do {
+            System.out.println(strNo);
+
+            if (inputNo.hasNextInt()) {
+                value = inputNo.nextInt();
+                return value;
+            } else {
+                System.out.print("Inputan Salah...");
+                inputNo.next();
+            }
+        } while ( value == 0);
+
+        return value;
+    }
+
+    public static void hitungBilPrima(int bilangan1, int bilangan2) {
+        int num = 0;
+        int total=0;
+        String bilPrima = "        ";
+
+        while (bilangan1 < 0) {
+            System.out.print("Bilangan harus positif, Masukkan Ulang Bilangan 1");
+            bilangan1 = inputInteger("");
+        }
+
+        while (bilangan2 < 0) {
+            System.out.print("Bilangan harus positif, Masukkan Ulang Bilangan 2");
+            bilangan2 = inputInteger("");
+        }
+
+        for (int i = bilangan1; i <= bilangan2; i++) {
+            int counter = 0;
+
+            for (num = i; num>= 1; num--) {
+                if (i%num==0) {
+                    counter = counter + 1;
+                }
+            }
+
+            if (counter == 2){
+                bilPrima = bilPrima + i + "      ";
+                total = total + i;
+            }
+        }
+
+        System.out.println("Bilangan Prima antara " + bilangan1 + " dan " + bilangan2 + " adalah");
+        System.out.println(bilPrima);
+        System.out.println("Penjumlahan Bilangan Prima = " + total);
+    }
+
+    public static void jmlBilPrima(int angka1, int angka2) {
+        int num = 0;
+        int total=0;
+        String bilPrima = "        ";
+
+        for (int i = angka1; i <= angka2; i++) {
+            int counter = 0;
+
+            for (num = i; num>= 1; num--) {
+                if (i%num==0) {
+                    counter = counter + 1;
+                }
+            }
+
+            if (counter == 2){
+                bilPrima = bilPrima + i + "      ";
+                total += 1;
+            }
+        }
+
+        System.out.println("Bilangan Prima antara " + angka1 + " dan " + angka2 + " adalah");
+        System.out.println(bilPrima);
+        System.out.println("Penjumlahan Bilangan Prima = " + total);
+    }
+}
